@@ -14,6 +14,7 @@ Go code!
 */
 const express = require("express");
 const helmet = require("helmet");
+const cors = require("cors");
 
 const server = express();
 
@@ -29,16 +30,17 @@ function logger(req, res, next) {
   next();
 }
 
+server.use(cors());
 server.use(helmet());
 server.use(express.json());
 server.use(logger);
 
-server.get("/", (req, res) => {
+server.get("/api", cors(), (req, res) => {
   res.send("Welcome to Daniel's Sprint API");
 });
 
-server.use("/api/projects", projectRouter);
-server.use("/api/actions", actionRouter);
+server.use("/api/projects", cors(), projectRouter);
+server.use("/api/actions", cors(), actionRouter);
 
 server.listen(1337, () =>
   console.log("\n=====API Running on port 1337=====\n")
