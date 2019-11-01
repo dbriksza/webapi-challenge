@@ -12,3 +12,36 @@ I need this code, just don't know where, perhaps should make some middleware, do
 
 Go code!
 */
+const express = require("express");
+const helmet = require("helmet");
+const cors = require("cors");
+
+const server = express();
+
+const projectRouter = require("./data/project-router");
+const actionRouter = require("./data/action-router");
+
+function logger(req, res, next) {
+  console.log(
+    `a ${req.method} requst to \n${require("url").parse(
+      req.url
+    )} was made at: ${new Date()}`
+  );
+  next();
+}
+
+server.use(cors());
+server.use(helmet());
+server.use(express.json());
+server.use(logger);
+
+server.get("/api", cors(), (req, res) => {
+  res.send("Welcome to Daniel's Sprint API");
+});
+
+server.use("/api/projects", cors(), projectRouter);
+server.use("/api/actions", cors(), actionRouter);
+
+server.listen(1337, () =>
+  console.log("\n=====API Running on port 1337=====\n")
+);
