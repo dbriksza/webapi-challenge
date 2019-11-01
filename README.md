@@ -26,13 +26,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+Express can run a server and be middle to that same server
+
 - [ ] Describe Middleware?
+
+Middleware is functionality added inbetween the server and the servee
 
 - [ ] Describe a Resource?
 
+A resource is anything that is given or recieved by the server
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+API can return status codes and the corresponding messages
+
 - [ ] How can we partition our application into sub-applications?
+
+We can use routes/sub-routes to break our app into multiple managable pieces
 
 ## Project Setup
 
