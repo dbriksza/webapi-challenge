@@ -17,7 +17,8 @@ const helmet = require("helmet");
 
 const server = express();
 
-const router = requrie("./data/router");
+const projectRouter = require("./data/project-router");
+const actionRouter = require("./data/action-router");
 
 function logger(req, res, next) {
   console.log(
@@ -36,7 +37,8 @@ server.get("/", (req, res) => {
   res.send("Welcome to Daniel's Sprint API");
 });
 
-server.use("/api", router);
+server.use("/api/projects", projectRouter);
+server.use("/api/actions", actionRouter);
 
 server.listen(1337, () =>
   console.log("\n=====API Running on port 1337=====\n")
